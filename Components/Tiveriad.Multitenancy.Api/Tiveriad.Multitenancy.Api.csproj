@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="MailKit" Version="3.5.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.2" />
+    <PackageReference Include="Microsoft.IdentityModel.Protocols" Version="6.26.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.26.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3-beta1" />
+    <PackageReference Include="Serilog.Extensions.Logging.File" Version="3.0.1-dev-00077" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Tiveriad.Commons" Version="3.4.0.1" />
+    <PackageReference Include="Tiveriad.Cqrs" Version="3.4.0.1" />
+    <PackageReference Include="Tiveriad.Cqrs.Microsoft.DependencyInjection" Version="3.4.0.1" />
+    <PackageReference Include="Tiveriad.Repositories.Microsoft.DependencyInjection" Version="3.4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tiveriad.Multitenancy.Core\Tiveriad.Multitenancy.Core.csproj" />
+    <ProjectReference Include="..\Tiveriad.Multitenancy.Application\Tiveriad.Multitenancy.Application.csproj" />
+    <ProjectReference Include="..\Tiveriad.Multitenancy.Infrastructure\Tiveriad.Multitenancy.Infrastructure.csproj" />
+    <ProjectReference Include="..\Tiveriad.Multitenancy.Persistence\Tiveriad.Multitenancy.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>

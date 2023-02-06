@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
+    <PackageReference Include="Tiveriad.Repositories.EntityFrameworkCore" Version="3.4.0.1" />
+    <PackageReference Include="Tiveriad.Repositories.Microsoft.DependencyInjection" Version="3.4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tiveriad.Multitenancy.Core\Tiveriad.Multitenancy.Core.csproj" />
+    <ProjectReference Include="..\Tiveriad.Multitenancy.Persistence\Tiveriad.Multitenancy.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Components", "Components", "{246CAC61-944C-4115-9C05-7B6B466FEF5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiveriad.Multitenancy.Api", "Components\Tiveriad.Multitenancy.Api\Tiveriad.Multitenancy.Api.csproj", "{BEC48CE5-56DE-41B3-9F04-DE683ADFAA8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiveriad.Multitenancy.Core", "Components\Tiveriad.Multitenancy.Core\Tiveriad.Multitenancy.Core.csproj", "{C7D6538E-9242-4146-AFDB-A81DBC0BE25B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiveriad.Multitenancy.Application", "Components\Tiveriad.Multitenancy.Application\Tiveriad.Multitenancy.Application.csproj", "{15411AE7-8264-45BD-861B-72A85BB7C2DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiveriad.Multitenancy.Infrastructure", "Components\Tiveriad.Multitenancy.Infrastructure\Tiveriad.Multitenancy.Infrastructure.csproj", "{C8673336-FFAF-4FFA-A5D2-C3501C85A307}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiveriad.Multitenancy.Persistence", "Components\Tiveriad.Multitenancy.Persistence\Tiveriad.Multitenancy.Persistence.csproj", "{314E0ABB-8593-4B0C-9797-2B4C2CDC9FFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BEC48CE5-56DE-41B3-9F04-DE683ADFAA8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEC48CE5-56DE-41B3-9F04-DE683ADFAA8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEC48CE5-56DE-41B3-9F04-DE683ADFAA8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEC48CE5-56DE-41B3-9F04-DE683ADFAA8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7D6538E-9242-4146-AFDB-A81DBC0BE25B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7D6538E-9242-4146-AFDB-A81DBC0BE25B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7D6538E-9242-4146-AFDB-A81DBC0BE25B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7D6538E-9242-4146-AFDB-A81DBC0BE25B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15411AE7-8264-45BD-861B-72A85BB7C2DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15411AE7-8264-45BD-861B-72A85BB7C2DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15411AE7-8264-45BD-861B-72A85BB7C2DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15411AE7-8264-45BD-861B-72A85BB7C2DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8673336-FFAF-4FFA-A5D2-C3501C85A307}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8673336-FFAF-4FFA-A5D2-C3501C85A307}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8673336-FFAF-4FFA-A5D2-C3501C85A307}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8673336-FFAF-4FFA-A5D2-C3501C85A307}.Release|Any CPU.Build.0 = Release|Any CPU
+		{314E0ABB-8593-4B0C-9797-2B4C2CDC9FFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{314E0ABB-8593-4B0C-9797-2B4C2CDC9FFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{314E0ABB-8593-4B0C-9797-2B4C2CDC9FFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{314E0ABB-8593-4B0C-9797-2B4C2CDC9FFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BEC48CE5-56DE-41B3-9F04-DE683ADFAA8B} = {246CAC61-944C-4115-9C05-7B6B466FEF5E}
+		{C7D6538E-9242-4146-AFDB-A81DBC0BE25B} = {246CAC61-944C-4115-9C05-7B6B466FEF5E}
+		{15411AE7-8264-45BD-861B-72A85BB7C2DD} = {246CAC61-944C-4115-9C05-7B6B466FEF5E}
+		{C8673336-FFAF-4FFA-A5D2-C3501C85A307} = {246CAC61-944C-4115-9C05-7B6B466FEF5E}
+		{314E0ABB-8593-4B0C-9797-2B4C2CDC9FFE} = {246CAC61-944C-4115-9C05-7B6B466FEF5E}
+	EndGlobalSection
+EndGlobal
