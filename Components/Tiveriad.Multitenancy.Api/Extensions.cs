@@ -1,9 +1,14 @@
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
+using RabbitMQ.Client;
+using Tiveriad.EnterpriseIntegrationPatterns.DependencyInjection;
+using Tiveriad.EnterpriseIntegrationPatterns.RabbitMq;
+using Tiveriad.EnterpriseIntegrationPatterns.ServiceResolvers;
 using Tiveriad.Multitenancy.Api.Filters;
 using Tiveriad.Multitenancy.Api.Mappings;
 using Tiveriad.Multitenancy.Persistence;
+using ServiceCollectionExtensions = Tiveriad.Repositories.Microsoft.DependencyInjection.ServiceCollectionExtensions;
 
 namespace Tiveriad.Multitenancy.Api;
 public static class Extensions
@@ -29,6 +34,20 @@ public static class Extensions
         var defaultContext = serviceProvider.GetRequiredService<DbContext>();
         var sql = defaultContext.Database.GenerateCreateScript();
         File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "script.sql"), sql);
+    }
+    public static void AddRabbitMq(this IServiceCollection services)
+    {
+        ServiceCollectionExtensions.ConfigureConnectionFactory<RabbitMqConnectionFactoryBuilder, IConnection, RabbitMqConnectionConfigurator,
+            IRabbitMqConnectionConfiguration>
+        (services, configurator =>
+        {
+            configurator
+                .SetHost("localhost")
+                .SetUsername("guest")
+                .SetPassword("guest")
+                .SetBrokerName("TEST");
+        }
+        );
     }
     
     public static void DatabaseEnsureCreated(this IServiceCollection serviceCollection)
