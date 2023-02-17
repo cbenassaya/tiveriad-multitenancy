@@ -8,9 +8,9 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
-    <PackageReference Include="Tiveriad.EnterpriseIntegrationPatterns.RabbitMq" Version="4.0.0.1" />
-    <PackageReference Include="Tiveriad.Repositories.EntityFrameworkCore" Version="4.0.0.1" />
-    <PackageReference Include="Tiveriad.Repositories.Microsoft.DependencyInjection" Version="4.0.0.1" />
+    <PackageReference Include="Tiveriad.EnterpriseIntegrationPatterns.RabbitMq" Version="4.0.0.2" />
+    <PackageReference Include="Tiveriad.Repositories.EntityFrameworkCore" Version="4.0.0.2" />
+    <PackageReference Include="Tiveriad.Repositories.Microsoft.DependencyInjection" Version="4.0.0.2" />
   </ItemGroup>
 
   <ItemGroup>

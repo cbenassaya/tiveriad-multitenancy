@@ -9,9 +9,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="7.0.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3-beta1" />
-    <PackageReference Include="Tiveriad.Commons" Version="4.0.0.1" />
-    <PackageReference Include="Tiveriad.EnterpriseIntegrationPatterns" Version="4.0.0.1" />
-    <PackageReference Include="Tiveriad.Repositories" Version="4.0.0.1" />
+    <PackageReference Include="Tiveriad.Commons" Version="4.0.0.2" />
+    <PackageReference Include="Tiveriad.EnterpriseIntegrationPatterns" Version="4.0.0.2" />
+    <PackageReference Include="Tiveriad.Repositories" Version="4.0.0.2" />
   </ItemGroup>
 
 </Project>

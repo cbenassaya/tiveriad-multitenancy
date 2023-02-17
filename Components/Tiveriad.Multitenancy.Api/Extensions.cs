@@ -3,10 +3,13 @@ using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
 using RabbitMQ.Client;
 using Tiveriad.EnterpriseIntegrationPatterns.DependencyInjection;
+using Tiveriad.EnterpriseIntegrationPatterns.EventBrokers;
 using Tiveriad.EnterpriseIntegrationPatterns.RabbitMq;
 using Tiveriad.EnterpriseIntegrationPatterns.ServiceResolvers;
 using Tiveriad.Multitenancy.Api.Filters;
 using Tiveriad.Multitenancy.Api.Mappings;
+using Tiveriad.Multitenancy.Core.DomainEvents;
+using Tiveriad.Multitenancy.Infrastructure;
 using Tiveriad.Multitenancy.Persistence;
 using ServiceCollectionExtensions = Tiveriad.Repositories.Microsoft.DependencyInjection.ServiceCollectionExtensions;
 
@@ -35,11 +38,11 @@ public static class Extensions
         var sql = defaultContext.Database.GenerateCreateScript();
         File.WriteAllText(Path.Combine(Directory.GetCurrentDirectory(), "script.sql"), sql);
     }
-    public static void AddRabbitMq(this IServiceCollection services)
+    public static void AddEip(this IServiceCollection services)
     {
-        ServiceCollectionExtensions.ConfigureConnectionFactory<RabbitMqConnectionFactoryBuilder, IConnection, RabbitMqConnectionConfigurator,
+        services.ConfigureConnectionFactory<RabbitMqConnectionFactoryBuilder, IConnection, RabbitMqConnectionConfigurator,
             IRabbitMqConnectionConfiguration>
-        (services, configurator =>
+        ( configurator =>
         {
             configurator
                 .SetHost("localhost")
@@ -48,6 +51,9 @@ public static class Extensions
                 .SetBrokerName("TEST");
         }
         );
+        services.AddScoped<IServiceResolver, DependencyInjectionServiceResolver>();
+        services.AddTiveriadEip(typeof(UserDomainEvent).Assembly);
+        services.AddScoped<IDomainEventStore, DomainEventStore>();
     }
     
     public static void DatabaseEnsureCreated(this IServiceCollection serviceCollection)
@@ -86,7 +92,12 @@ public static class Extensions
 
     public static void AddController(this IServiceCollection services)
     {
-        services.AddMvc(opt => opt.Filters.Add(typeof(TransactionActionFilter)));
+        services.AddMvc(opt =>
+        {
+            opt.Filters.Add<TransactionActionFilter>();
+            opt.Filters.Add<DomainEventActionFilter>();
+            
+        });
         services.AddControllers().AddNewtonsoftJson(options =>
         {
             options.SerializerSettings.DateFormatHandling = DateFormatHandling.IsoDateFormat;

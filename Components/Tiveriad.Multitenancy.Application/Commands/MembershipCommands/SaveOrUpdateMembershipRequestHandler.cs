@@ -5,6 +5,8 @@ using Tiveriad.Repositories;
 using System;
 using System.Threading.Tasks;
 using System.Threading;
+using Tiveriad.EnterpriseIntegrationPatterns.EventBrokers;
+using Tiveriad.Multitenancy.Core.DomainEvents;
 
 namespace Tiveriad.Multitenancy.Application.Commands.MembershipCommands;
 public class SaveOrUpdateMembershipRequestHandler : IRequestHandler<SaveOrUpdateMembershipRequest, Membership>
@@ -12,11 +14,13 @@ public class SaveOrUpdateMembershipRequestHandler : IRequestHandler<SaveOrUpdate
     private readonly IRepository<Organization, string> _organizationRepository;
     private readonly IRepository<Membership, string> _repository;
     private readonly IRepository<User, string> _userRepository;
-    public SaveOrUpdateMembershipRequestHandler(IRepository<Organization, string> organizationRepository, IRepository<User, string> userRepository, IRepository<Membership, string> repository)
+    private readonly IDomainEventStore _store;
+    public SaveOrUpdateMembershipRequestHandler(IRepository<Organization, string> organizationRepository, IRepository<User, string> userRepository, IRepository<Membership, string> repository, IDomainEventStore store)
     {
         _organizationRepository = organizationRepository;
         _userRepository = userRepository;
         _repository = repository;
+        _store = store;
     }
 
     public Task<Membership> Handle(SaveOrUpdateMembershipRequest request, CancellationToken cancellationToken)
@@ -29,6 +33,7 @@ public class SaveOrUpdateMembershipRequestHandler : IRequestHandler<SaveOrUpdate
             if (result == null)
             {
                 await _repository.AddOneAsync(request.Membership, cancellationToken);
+                _store.Add<MembershipDomainEvent,string>( new MembershipDomainEvent() {Membership = request.Membership, EventType = "INSERT"});
                 return request.Membership;
             }
             else
@@ -40,6 +45,7 @@ public class SaveOrUpdateMembershipRequestHandler : IRequestHandler<SaveOrUpdate
                 result.LastModified = request.Membership.LastModified;
                 result.User = (request.Membership.User != null) ? await _userRepository.GetByIdAsync(request.Membership.User.Id, cancellationToken) : null;
                 result.Organization = (request.Membership.Organization != null) ? await _organizationRepository.GetByIdAsync(request.Membership.Organization.Id, cancellationToken) : null;
+                _store.Add<MembershipDomainEvent,string>( new MembershipDomainEvent() {Membership = result, EventType = "UPDATE"});
                 return result;
             }
         //<-- END CUSTOM CODE-->

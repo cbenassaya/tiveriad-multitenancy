@@ -1,8 +1,13 @@
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
+using Tiveriad.Commons.Extensions;
 using Tiveriad.Connections;
+using Tiveriad.EnterpriseIntegrationPatterns.EventBrokers;
+using Tiveriad.EnterpriseIntegrationPatterns.Mediators;
 using Tiveriad.EnterpriseIntegrationPatterns.MessageBrokers;
 using Tiveriad.EnterpriseIntegrationPatterns.RabbitMq;
 using Tiveriad.Multitenancy.Core.DomainEvents;

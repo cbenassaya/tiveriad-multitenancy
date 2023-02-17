@@ -5,20 +5,31 @@ using Tiveriad.Repositories;
 using Tiveriad.Multitenancy.Core.Entities;
 using System.Threading.Tasks;
 using System.Threading;
+using Tiveriad.EnterpriseIntegrationPatterns.EventBrokers;
+using Tiveriad.Multitenancy.Core.DomainEvents;
 
 namespace Tiveriad.Multitenancy.Application.Commands.OrganizationCommands;
 public class DeleteOrganizationByIdRequestHandler : IRequestHandler<DeleteOrganizationByIdRequest, bool>
 {
     private readonly IRepository<Organization, string> _organizationRepository;
-    public DeleteOrganizationByIdRequestHandler(IRepository<Organization, string> organizationRepository)
+    private readonly IDomainEventStore _store;
+    public DeleteOrganizationByIdRequestHandler(IRepository<Organization, string> organizationRepository, IDomainEventStore store)
     {
         _organizationRepository = organizationRepository;
+        _store = store;
     }
 
     public Task<bool> Handle(DeleteOrganizationByIdRequest request, CancellationToken cancellationToken)
     {
         //<-- START CUSTOM CODE-->
-        return Task.Run(() => _organizationRepository.DeleteMany(x => x.Id == request.Id) == 1, cancellationToken);
+        return Task.Run(() =>
+        {
+            var organization = _organizationRepository.GetById(request.Id);
+            var result =  _organizationRepository.DeleteOne(organization) == 1;
+            if (result)
+                _store.Add<OrganizationDomainEvent,string>( new OrganizationDomainEvent() {Organization = organization, EventType = "DELETE"});
+            return result;
+        }, cancellationToken);
     //<-- END CUSTOM CODE-->
     }
 }

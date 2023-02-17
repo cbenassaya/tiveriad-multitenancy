@@ -5,14 +5,18 @@ using Tiveriad.Repositories;
 using System;
 using System.Threading.Tasks;
 using System.Threading;
+using Tiveriad.EnterpriseIntegrationPatterns.EventBrokers;
+using Tiveriad.Multitenancy.Core.DomainEvents;
 
 namespace Tiveriad.Multitenancy.Application.Commands.OrganizationCommands;
 public class SaveOrUpdateOrganizationRequestHandler : IRequestHandler<SaveOrUpdateOrganizationRequest, Organization>
 {
     private readonly IRepository<Organization, string> _organizationRepository;
-    public SaveOrUpdateOrganizationRequestHandler(IRepository<Organization, string> organizationRepository)
+    private readonly IDomainEventStore _store;
+    public SaveOrUpdateOrganizationRequestHandler(IRepository<Organization, string> organizationRepository, IDomainEventStore store)
     {
         _organizationRepository = organizationRepository;
+        _store = store;
     }
 
     public Task<Organization> Handle(SaveOrUpdateOrganizationRequest request, CancellationToken cancellationToken)
@@ -25,6 +29,7 @@ public class SaveOrUpdateOrganizationRequestHandler : IRequestHandler<SaveOrUpda
             if (result == null)
             {
                 await _organizationRepository.AddOneAsync(request.Organization, cancellationToken);
+                _store.Add<OrganizationDomainEvent,string>( new OrganizationDomainEvent() {Organization = request.Organization, EventType = "INSERT"});
                 return request.Organization;
             }
             else
@@ -36,6 +41,7 @@ public class SaveOrUpdateOrganizationRequestHandler : IRequestHandler<SaveOrUpda
                 result.Created = request.Organization.Created;
                 result.LastModifiedBy = request.Organization.LastModifiedBy;
                 result.LastModified = request.Organization.LastModified;
+                _store.Add<OrganizationDomainEvent,string>( new OrganizationDomainEvent() {Organization = result, EventType = "UPDATE"});
                 return result;
             }
         //<-- END CUSTOM CODE-->

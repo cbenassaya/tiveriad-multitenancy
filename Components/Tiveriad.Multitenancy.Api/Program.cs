@@ -11,6 +11,7 @@ builder.Services.AddUserResolverService();
 builder.Services.AddInfrastructure();
 builder.Services.AddApplication();
 builder.Services.DatabaseEnsureCreated();
+builder.Services.AddEip();
 var app = builder.Build();
 app.UseDevelopmentEnvironment();
 app.UseLoggerFile();

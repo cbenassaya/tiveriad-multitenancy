@@ -18,11 +18,11 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3-beta1" />
     <PackageReference Include="Serilog.Extensions.Logging.File" Version="3.0.1-dev-00077" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-    <PackageReference Include="Tiveriad.Commons" Version="4.0.0.1" />
-    <PackageReference Include="Tiveriad.Cqrs" Version="4.0.0.1" />
-    <PackageReference Include="Tiveriad.Cqrs.Microsoft.DependencyInjection" Version="4.0.0.1" />
-    <PackageReference Include="Tiveriad.EnterpriseIntegrationPatterns.DependencyInjection" Version="4.0.0.1" />
-    <PackageReference Include="Tiveriad.Repositories.Microsoft.DependencyInjection" Version="4.0.0.1" />
+    <PackageReference Include="Tiveriad.Commons" Version="4.0.0.2" />
+    <PackageReference Include="Tiveriad.Cqrs" Version="4.0.0.2" />
+    <PackageReference Include="Tiveriad.Cqrs.Microsoft.DependencyInjection" Version="4.0.0.2" />
+    <PackageReference Include="Tiveriad.EnterpriseIntegrationPatterns.DependencyInjection" Version="4.0.0.2" />
+    <PackageReference Include="Tiveriad.Repositories.Microsoft.DependencyInjection" Version="4.0.0.2" />
   </ItemGroup>
 
   <ItemGroup>

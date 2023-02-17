@@ -5,14 +5,18 @@ using Tiveriad.Repositories;
 using System;
 using System.Threading.Tasks;
 using System.Threading;
+using Tiveriad.EnterpriseIntegrationPatterns.EventBrokers;
+using Tiveriad.Multitenancy.Core.DomainEvents;
 
 namespace Tiveriad.Multitenancy.Application.Commands.UserCommands;
 public class SaveOrUpdateUserRequestHandler : IRequestHandler<SaveOrUpdateUserRequest, User>
 {
     private readonly IRepository<User, string> _userRepository;
-    public SaveOrUpdateUserRequestHandler(IRepository<User, string> userRepository)
+    private readonly IDomainEventStore _store;
+    public SaveOrUpdateUserRequestHandler(IRepository<User, string> userRepository, IDomainEventStore store)
     {
         _userRepository = userRepository;
+        _store = store;
     }
 
     public Task<User> Handle(SaveOrUpdateUserRequest request, CancellationToken cancellationToken)
@@ -25,6 +29,7 @@ public class SaveOrUpdateUserRequestHandler : IRequestHandler<SaveOrUpdateUserRe
             if (result == null)
             {
                 await _userRepository.AddOneAsync(request.User, cancellationToken);
+                _store.Add<UserDomainEvent,string>( new UserDomainEvent() {User = request.User, EventType = "INSERT"});
                 return request.User;
             }
             else
@@ -38,6 +43,7 @@ public class SaveOrUpdateUserRequestHandler : IRequestHandler<SaveOrUpdateUserRe
                 result.Created = request.User.Created;
                 result.LastModifiedBy = request.User.LastModifiedBy;
                 result.LastModified = request.User.LastModified;
+                _store.Add<UserDomainEvent,string>( new UserDomainEvent() {User = result, EventType = "UPDATE"});
                 return result;
             }
         //<-- END CUSTOM CODE-->
