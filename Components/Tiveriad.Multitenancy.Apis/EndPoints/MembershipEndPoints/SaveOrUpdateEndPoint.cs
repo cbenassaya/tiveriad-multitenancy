@@ -4,6 +4,7 @@ using AutoMapper;
 using System.Threading.Tasks;
 using Tiveriad.Multitenancy.Api.Contracts;
 using System.Threading;
+using Tiveriad.Multitenancy.Api.Filters;
 using Tiveriad.Multitenancy.Core.Entities;
 
 namespace Tiveriad.Multitenancy.Api.EndPoints.MembershipEndPoints;
@@ -18,6 +19,10 @@ public class SaveOrUpdateEndPoint : ControllerBase
     }
 
     [HttpPost("/api/memberships")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ValidateModel]
     public async Task<ActionResult<MembershipReaderModel>> HandleAsync([FromBody] MembershipWriterModel model, CancellationToken cancellationToken)
     {
         //<-- START CUSTOM CODE-->

@@ -68,6 +68,12 @@ public static class Extensions
         var loggerFactory = application.ApplicationServices.GetRequiredService<ILoggerFactory>();
         loggerFactory.AddFile("Logs/Log-{Date}.txt");
     }
+    
+    public static void AddFilters(this IServiceCollection services)
+    {
+        services.AddMvc(
+            options => { options.Filters.Add(new ApiExceptionFilter()); }).AddNewtonsoftJson();
+    }
 
     public static void UseHttps(this IApplicationBuilder application)
     {

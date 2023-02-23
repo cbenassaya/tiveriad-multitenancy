@@ -18,10 +18,16 @@ public class GetAllEndPoint : ControllerBase
     }
 
     [HttpGet("/api/memberships")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<MembershipReaderModel>> HandleAsync(CancellationToken cancellationToken)
     {
         //<-- START CUSTOM CODE-->
         var result = await _mediator.Send(new GetAllMembershipRequest(), cancellationToken);
+        if (result == null || !result.Any())
+            return NoContent();
         var data = _mapper.Map<IEnumerable<Membership>, IEnumerable<MembershipReaderModel>>(result);
         //<-- END CUSTOM CODE-->
         return Ok(data);

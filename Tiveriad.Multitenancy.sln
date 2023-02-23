@@ -5,11 +5,11 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Components", "Components", "{246CAC61-944C-4115-9C05-7B6B466FEF5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiveriad.Multitenancy.Api", "Components\Tiveriad.Multitenancy.Api\Tiveriad.Multitenancy.Api.csproj", "{BEC48CE5-56DE-41B3-9F04-DE683ADFAA8B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiveriad.Multitenancy.Apis", "Components\Tiveriad.Multitenancy.Apis\Tiveriad.Multitenancy.Apis.csproj", "{BEC48CE5-56DE-41B3-9F04-DE683ADFAA8B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiveriad.Multitenancy.Core", "Components\Tiveriad.Multitenancy.Core\Tiveriad.Multitenancy.Core.csproj", "{C7D6538E-9242-4146-AFDB-A81DBC0BE25B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiveriad.Multitenancy.Application", "Components\Tiveriad.Multitenancy.Application\Tiveriad.Multitenancy.Application.csproj", "{15411AE7-8264-45BD-861B-72A85BB7C2DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiveriad.Multitenancy.Applications", "Components\Tiveriad.Multitenancy.Applications\Tiveriad.Multitenancy.Applications.csproj", "{15411AE7-8264-45BD-861B-72A85BB7C2DD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiveriad.Multitenancy.Infrastructure", "Components\Tiveriad.Multitenancy.Infrastructure\Tiveriad.Multitenancy.Infrastructure.csproj", "{C8673336-FFAF-4FFA-A5D2-C3501C85A307}"
 EndProject

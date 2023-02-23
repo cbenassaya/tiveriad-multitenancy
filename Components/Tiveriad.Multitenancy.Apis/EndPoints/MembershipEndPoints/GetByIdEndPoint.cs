@@ -19,11 +19,18 @@ public class GetByIdEndPoint : ControllerBase
     }
 
     [HttpGet("/api/memberships/{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<MembershipReaderModel>> HandleAsync([FromRoute] string id, CancellationToken cancellationToken)
     {
         //<-- START CUSTOM CODE-->
         var result = await _mediator.Send(new GetMembershipByIdRequest(id), cancellationToken);
+        if (result == null)
+            return NoContent();
         var data = _mapper.Map<Membership, MembershipReaderModel>(result);
+        
         //<-- END CUSTOM CODE-->
         return Ok(data);
     }

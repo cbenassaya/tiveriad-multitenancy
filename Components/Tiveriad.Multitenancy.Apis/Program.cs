@@ -4,6 +4,7 @@ using Tiveriad.Multitenancy.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddMapper();
+builder.Services.AddFilters();
 builder.Services.AddController();
 builder.Services.AddSwagger();
 builder.Services.AddCorsMethod();

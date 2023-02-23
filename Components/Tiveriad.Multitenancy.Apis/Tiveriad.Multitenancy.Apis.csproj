@@ -27,7 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Tiveriad.Multitenancy.Core\Tiveriad.Multitenancy.Core.csproj" />
-    <ProjectReference Include="..\Tiveriad.Multitenancy.Application\Tiveriad.Multitenancy.Application.csproj" />
+    <ProjectReference Include="..\Tiveriad.Multitenancy.Applications\Tiveriad.Multitenancy.Applications.csproj" />
     <ProjectReference Include="..\Tiveriad.Multitenancy.Infrastructure\Tiveriad.Multitenancy.Infrastructure.csproj" />
     <ProjectReference Include="..\Tiveriad.Multitenancy.Persistence\Tiveriad.Multitenancy.Persistence.csproj" />
   </ItemGroup>

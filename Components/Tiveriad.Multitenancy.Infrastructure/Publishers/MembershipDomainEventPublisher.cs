@@ -7,7 +7,7 @@ using Tiveriad.Multitenancy.Core.DomainEvents;
 
 namespace Tiveriad.Multitenancy.Infrastructure.Publishers;
 
-public class MembershipDomainEventPublisher: RabbitMqPublisher<MembershipDomainEvent, string>
+public class MembershipDomainEventPublisher: RabbitMqPublisher2<MembershipDomainEvent, string>
 {
     public MembershipDomainEventPublisher(
         IConnectionFactory<IConnection> connectionFactory,
