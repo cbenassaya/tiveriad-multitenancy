@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Tiveriad.Multitenancy.Core.Entities;
 using Tiveriad.Repositories;
 
-namespace Tiveriad.Multitenancy.Application.Queries.MembershipQueries;
+namespace Tiveriad.Multitenancy.Applications.Queries.MembershipQueries;
 public class GetAllMembershipRequestHandler : IRequestHandler<GetAllMembershipRequest, IEnumerable<Membership>>
 {
     private readonly IRepository<Membership, string> _membershipRepository;

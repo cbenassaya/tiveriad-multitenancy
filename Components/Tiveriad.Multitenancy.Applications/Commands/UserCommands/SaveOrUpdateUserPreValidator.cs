@@ -2,7 +2,7 @@ using FluentValidation;
 using Tiveriad.Multitenancy.Core.Entities;
 using Tiveriad.Repositories;
 
-namespace Tiveriad.Multitenancy.Application.Commands.UserCommands;
+namespace Tiveriad.Multitenancy.Applications.Commands.UserCommands;
 public class SaveOrUpdateUserPreValidator : AbstractValidator<SaveOrUpdateUserRequest>
 {
     private IRepository<User, string> _userRepository;

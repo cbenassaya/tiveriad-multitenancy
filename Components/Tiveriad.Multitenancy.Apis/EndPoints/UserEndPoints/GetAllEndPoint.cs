@@ -1,10 +1,11 @@
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Tiveriad.Multitenancy.Api.Contracts;
+using Tiveriad.Multitenancy.Apis.Contracts;
+using Tiveriad.Multitenancy.Applications.Queries.UserQueries;
 using Tiveriad.Multitenancy.Core.Entities;
 
-namespace Tiveriad.Multitenancy.Api.EndPoints.UserEndPoints;
+namespace Tiveriad.Multitenancy.Apis.EndPoints.UserEndPoints;
 public class GetAllEndPoint : ControllerBase
 {
     private readonly IMediator _mediator;

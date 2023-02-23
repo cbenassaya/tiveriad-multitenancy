@@ -1,4 +1,5 @@
 using MediatR;
-using Tiveriad.Multitenancy.Application.Commands;
+
+namespace Tiveriad.Multitenancy.Applications.Commands.OrganizationCommands;
 
 public record DeleteOrganizationByIdRequest(string Id) : IRequest<bool>,ICommandRequest;

@@ -1,4 +1,4 @@
-﻿namespace Tiveriad.Multitenancy.Application.Commands;
+﻿namespace Tiveriad.Multitenancy.Applications.Commands;
 
 public interface ICommandRequest
 {

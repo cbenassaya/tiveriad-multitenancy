@@ -4,7 +4,7 @@ using Tiveriad.Multitenancy.Core.DomainEvents;
 using Tiveriad.Multitenancy.Core.Entities;
 using Tiveriad.Repositories;
 
-namespace Tiveriad.Multitenancy.Application.Commands.MembershipCommands;
+namespace Tiveriad.Multitenancy.Applications.Commands.MembershipCommands;
 public class DeleteMembershipByIdRequestHandler : IRequestHandler<DeleteMembershipByIdRequest, bool>
 {
     private readonly IRepository<Membership, string> _membershipRepository;

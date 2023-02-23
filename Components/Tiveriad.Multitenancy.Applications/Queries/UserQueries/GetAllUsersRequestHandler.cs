@@ -2,7 +2,7 @@ using MediatR;
 using Tiveriad.Multitenancy.Core.Entities;
 using Tiveriad.Repositories;
 
-namespace Tiveriad.Multitenancy.Application.Queries.UserQueries;
+namespace Tiveriad.Multitenancy.Applications.Queries.UserQueries;
 public class GetAllUsersRequestHandler : IRequestHandler<GetAllUsersRequest, IEnumerable<User>>
 {
     private readonly IRepository<User, string> _userRepository;

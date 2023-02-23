@@ -5,7 +5,7 @@ using Tiveriad.EnterpriseIntegrationPatterns.MessageBrokers;
 using Tiveriad.Multitenancy.Core.DomainEvents;
 using Tiveriad.Multitenancy.Core.Exceptions;
 
-namespace Tiveriad.Multitenancy.Api.Filters;
+namespace Tiveriad.Multitenancy.Apis.Filters;
 
 public class DomainEventActionFilter : IAsyncActionFilter
 {

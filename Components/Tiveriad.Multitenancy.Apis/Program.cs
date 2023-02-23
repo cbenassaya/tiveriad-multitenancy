@@ -1,5 +1,5 @@
-using Tiveriad.Multitenancy.Api;
-using Tiveriad.Multitenancy.Application;
+using Tiveriad.Multitenancy.Apis;
+using Tiveriad.Multitenancy.Applications;
 using Tiveriad.Multitenancy.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +20,9 @@ app.UseRouting();
 app.UseCorsAllowAny();
 app.UseEndpoints();
 app.Run();
-public partial class Program
+namespace Tiveriad.Multitenancy.Apis
 {
+    public partial class Program
+    {
+    }
 }

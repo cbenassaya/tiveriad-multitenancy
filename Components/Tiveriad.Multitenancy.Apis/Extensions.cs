@@ -6,10 +6,10 @@ using Tiveriad.EnterpriseIntegrationPatterns.DependencyInjection;
 using Tiveriad.EnterpriseIntegrationPatterns.EventBrokers;
 using Tiveriad.EnterpriseIntegrationPatterns.RabbitMq;
 using Tiveriad.EnterpriseIntegrationPatterns.ServiceResolvers;
-using Tiveriad.Multitenancy.Api.Filters;
+using Tiveriad.Multitenancy.Apis.Filters;
 using Tiveriad.Multitenancy.Core.DomainEvents;
 
-namespace Tiveriad.Multitenancy.Api;
+namespace Tiveriad.Multitenancy.Apis;
 public static class Extensions
 {
     public static void UseCorsAllowAny(this IApplicationBuilder application)

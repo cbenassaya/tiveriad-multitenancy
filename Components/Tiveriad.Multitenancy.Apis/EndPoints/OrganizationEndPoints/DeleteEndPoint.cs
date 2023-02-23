@@ -2,8 +2,9 @@ using System.ComponentModel.DataAnnotations;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Tiveriad.Multitenancy.Applications.Commands.OrganizationCommands;
 
-namespace Tiveriad.Multitenancy.Api.EndPoints.OrganizationEndPoints;
+namespace Tiveriad.Multitenancy.Apis.EndPoints.OrganizationEndPoints;
 public class DeleteEndPoint : ControllerBase
 {
     private readonly IMediator _mediator;

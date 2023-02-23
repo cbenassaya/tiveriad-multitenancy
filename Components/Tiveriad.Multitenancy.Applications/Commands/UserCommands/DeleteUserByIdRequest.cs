@@ -1,4 +1,5 @@
 using MediatR;
-using Tiveriad.Multitenancy.Application.Commands;
+
+namespace Tiveriad.Multitenancy.Applications.Commands.UserCommands;
 
 public record DeleteUserByIdRequest(string Id) : IRequest<bool>,ICommandRequest;

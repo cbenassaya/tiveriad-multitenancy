@@ -4,7 +4,7 @@ using Tiveriad.Multitenancy.Core.DomainEvents;
 using Tiveriad.Multitenancy.Core.Entities;
 using Tiveriad.Repositories;
 
-namespace Tiveriad.Multitenancy.Application.Commands.UserCommands;
+namespace Tiveriad.Multitenancy.Applications.Commands.UserCommands;
 public class DeleteUserByIdRequestHandler : IRequestHandler<DeleteUserByIdRequest, bool>
 {
     private readonly IRepository<User, string> _userRepository;

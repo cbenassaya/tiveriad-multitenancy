@@ -1,6 +1,6 @@
 using Tiveriad.Multitenancy.Core.Entities;
 
-namespace Tiveriad.Multitenancy.Api.Contracts;
+namespace Tiveriad.Multitenancy.Apis.Contracts;
 public class OrganizationReaderModel
 {
     public string? Id { get; set; }

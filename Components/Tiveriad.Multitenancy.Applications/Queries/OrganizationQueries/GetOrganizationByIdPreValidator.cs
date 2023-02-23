@@ -2,7 +2,7 @@ using FluentValidation;
 using Tiveriad.Multitenancy.Core.Entities;
 using Tiveriad.Repositories;
 
-namespace Tiveriad.Multitenancy.Application.Queries.OrganizationQueries;
+namespace Tiveriad.Multitenancy.Applications.Queries.OrganizationQueries;
 public class GetOrganizationByIdPreValidator : AbstractValidator<GetOrganizationByIdRequest>
 {
     private IRepository<Organization, string> _organizationRepository;

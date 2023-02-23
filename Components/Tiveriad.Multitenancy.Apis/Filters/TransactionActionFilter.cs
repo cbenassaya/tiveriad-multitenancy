@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Tiveriad.Multitenancy.Core.Services;
 using Tiveriad.Repositories;
 
-namespace Tiveriad.Multitenancy.Api.Filters;
+namespace Tiveriad.Multitenancy.Apis.Filters;
 public class TransactionActionFilter : IAsyncActionFilter
 {
     private readonly DbContext _context;

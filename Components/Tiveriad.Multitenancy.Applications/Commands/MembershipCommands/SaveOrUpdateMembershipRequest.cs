@@ -1,5 +1,6 @@
 using MediatR;
-using Tiveriad.Multitenancy.Application.Commands;
 using Tiveriad.Multitenancy.Core.Entities;
+
+namespace Tiveriad.Multitenancy.Applications.Commands.MembershipCommands;
 
 public record SaveOrUpdateMembershipRequest(Membership Membership) : IRequest<Membership>,ICommandRequest;

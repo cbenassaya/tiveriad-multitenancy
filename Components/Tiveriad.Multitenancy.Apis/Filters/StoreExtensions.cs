@@ -1,6 +1,6 @@
 ﻿using Tiveriad.EnterpriseIntegrationPatterns.EventBrokers;
 
-namespace Tiveriad.Multitenancy.Api.Filters;
+namespace Tiveriad.Multitenancy.Apis.Filters;
 
 public static class StoreExtensions
 {

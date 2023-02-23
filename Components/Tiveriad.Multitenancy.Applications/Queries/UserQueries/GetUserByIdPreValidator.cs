@@ -2,7 +2,7 @@ using FluentValidation;
 using Tiveriad.Multitenancy.Core.Entities;
 using Tiveriad.Repositories;
 
-namespace Tiveriad.Multitenancy.Application.Queries.UserQueries;
+namespace Tiveriad.Multitenancy.Applications.Queries.UserQueries;
 public class GetUserByIdPreValidator : AbstractValidator<GetUserByIdRequest>
 {
     private IRepository<User, string> _userRepository;

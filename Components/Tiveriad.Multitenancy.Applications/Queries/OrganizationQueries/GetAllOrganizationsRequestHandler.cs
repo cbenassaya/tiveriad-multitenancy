@@ -2,7 +2,7 @@ using MediatR;
 using Tiveriad.Multitenancy.Core.Entities;
 using Tiveriad.Repositories;
 
-namespace Tiveriad.Multitenancy.Application.Queries.OrganizationQueries;
+namespace Tiveriad.Multitenancy.Applications.Queries.OrganizationQueries;
 public class GetAllOrganizationsRequestHandler : IRequestHandler<GetAllOrganizationsRequest, IEnumerable<Organization>>
 {
     private readonly IRepository<Organization, string> _organizationRepository;

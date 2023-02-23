@@ -2,7 +2,7 @@ using FluentValidation;
 using Tiveriad.Multitenancy.Core.Entities;
 using Tiveriad.Repositories;
 
-namespace Tiveriad.Multitenancy.Application.Commands.MembershipCommands;
+namespace Tiveriad.Multitenancy.Applications.Commands.MembershipCommands;
 public class SaveOrUpdateMembershipPreValidator : AbstractValidator<SaveOrUpdateMembershipRequest>
 {
     private IRepository<Membership, string> _membershipRepository;

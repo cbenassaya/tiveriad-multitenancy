@@ -2,7 +2,7 @@ using FluentValidation;
 using Tiveriad.Multitenancy.Core.Entities;
 using Tiveriad.Repositories;
 
-namespace Tiveriad.Multitenancy.Application.Queries.MembershipQueries;
+namespace Tiveriad.Multitenancy.Applications.Queries.MembershipQueries;
 public class GetAllMembershipPreValidator : AbstractValidator<GetAllMembershipRequest>
 {
     private IRepository<Membership, string> _membershipRepository;

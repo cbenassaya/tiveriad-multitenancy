@@ -1,11 +1,12 @@
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Tiveriad.Multitenancy.Api.Contracts;
-using Tiveriad.Multitenancy.Api.Filters;
+using Tiveriad.Multitenancy.Apis.Contracts;
+using Tiveriad.Multitenancy.Apis.Filters;
+using Tiveriad.Multitenancy.Applications.Commands.OrganizationCommands;
 using Tiveriad.Multitenancy.Core.Entities;
 
-namespace Tiveriad.Multitenancy.Api.EndPoints.OrganizationEndPoints;
+namespace Tiveriad.Multitenancy.Apis.EndPoints.OrganizationEndPoints;
 public class SaveOrUpdateEndPoint : ControllerBase
 {
     private readonly IMediator _mediator;

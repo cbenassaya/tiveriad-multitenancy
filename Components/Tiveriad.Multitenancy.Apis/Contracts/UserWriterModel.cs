@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Tiveriad.Multitenancy.Api.Contracts;
+namespace Tiveriad.Multitenancy.Apis.Contracts;
 public class UserWriterModel
 {
     public string? Id { get; set; }

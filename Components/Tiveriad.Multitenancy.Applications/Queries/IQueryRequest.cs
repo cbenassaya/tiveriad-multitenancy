@@ -1,4 +1,4 @@
-﻿namespace Tiveriad.Multitenancy.Application.Queries;
+﻿namespace Tiveriad.Multitenancy.Applications.Queries;
 
 public interface IQueryRequest
 {

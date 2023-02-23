@@ -5,7 +5,7 @@ using Tiveriad.Multitenancy.Core.DomainEvents;
 using Tiveriad.Multitenancy.Core.Entities;
 using Tiveriad.Repositories;
 
-namespace Tiveriad.Multitenancy.Application.Commands.MembershipCommands;
+namespace Tiveriad.Multitenancy.Applications.Commands.MembershipCommands;
 public class SaveOrUpdateMembershipRequestHandler : IRequestHandler<SaveOrUpdateMembershipRequest, Membership>
 {
     private readonly IRepository<Organization, string> _organizationRepository;

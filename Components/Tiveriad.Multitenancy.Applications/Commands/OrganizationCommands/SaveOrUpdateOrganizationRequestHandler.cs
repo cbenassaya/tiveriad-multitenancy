@@ -4,7 +4,7 @@ using Tiveriad.Multitenancy.Core.DomainEvents;
 using Tiveriad.Multitenancy.Core.Entities;
 using Tiveriad.Repositories;
 
-namespace Tiveriad.Multitenancy.Application.Commands.OrganizationCommands;
+namespace Tiveriad.Multitenancy.Applications.Commands.OrganizationCommands;
 public class SaveOrUpdateOrganizationRequestHandler : IRequestHandler<SaveOrUpdateOrganizationRequest, Organization>
 {
     private readonly IRepository<Organization, string> _organizationRepository;

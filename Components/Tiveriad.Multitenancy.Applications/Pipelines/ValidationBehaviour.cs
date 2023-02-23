@@ -1,7 +1,7 @@
 using FluentValidation;
 using MediatR;
 
-namespace Tiveriad.Multitenancy.Application.Pipelines;
+namespace Tiveriad.Multitenancy.Applications.Pipelines;
 
 public class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
 {

@@ -1,8 +1,8 @@
 using AutoMapper;
-using Tiveriad.Multitenancy.Api.Contracts;
+using Tiveriad.Multitenancy.Apis.Contracts;
 using Tiveriad.Multitenancy.Core.Entities;
 
-namespace Tiveriad.Multitenancy.Api.Mappings;
+namespace Tiveriad.Multitenancy.Apis.Mappings;
 public class OrganizationProfile : Profile
 {
     public OrganizationProfile()
