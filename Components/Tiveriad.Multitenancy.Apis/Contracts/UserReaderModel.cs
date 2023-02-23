@@ -1,4 +1,3 @@
-using System;
 using Tiveriad.Multitenancy.Core.Entities;
 
 namespace Tiveriad.Multitenancy.Api.Contracts;

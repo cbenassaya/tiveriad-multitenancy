@@ -1,11 +1,6 @@
-using Microsoft.EntityFrameworkCore;
 using MediatR;
-using System.Collections.Generic;
 using Tiveriad.Multitenancy.Core.Entities;
 using Tiveriad.Repositories;
-using System;
-using System.Threading.Tasks;
-using System.Threading;
 
 namespace Tiveriad.Multitenancy.Application.Queries.UserQueries;
 public class GetAllUsersRequestHandler : IRequestHandler<GetAllUsersRequest, IEnumerable<User>>

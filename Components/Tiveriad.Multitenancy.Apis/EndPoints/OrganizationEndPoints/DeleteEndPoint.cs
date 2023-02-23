@@ -1,10 +1,7 @@
-using Microsoft.AspNetCore.Mvc;
-using MediatR;
-using AutoMapper;
-using System.Threading.Tasks;
-using System;
 using System.ComponentModel.DataAnnotations;
-using System.Threading;
+using AutoMapper;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Tiveriad.Multitenancy.Api.EndPoints.OrganizationEndPoints;
 public class DeleteEndPoint : ControllerBase

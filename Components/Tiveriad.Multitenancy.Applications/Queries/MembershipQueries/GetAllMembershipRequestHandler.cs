@@ -1,11 +1,7 @@
-using Microsoft.EntityFrameworkCore;
 using MediatR;
-using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using Tiveriad.Multitenancy.Core.Entities;
 using Tiveriad.Repositories;
-using System;
-using System.Threading.Tasks;
-using System.Threading;
 
 namespace Tiveriad.Multitenancy.Application.Queries.MembershipQueries;
 public class GetAllMembershipRequestHandler : IRequestHandler<GetAllMembershipRequest, IEnumerable<Membership>>

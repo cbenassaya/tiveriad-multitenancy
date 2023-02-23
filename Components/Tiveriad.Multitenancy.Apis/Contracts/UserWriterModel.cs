@@ -1,6 +1,4 @@
-using System;
 using System.ComponentModel.DataAnnotations;
-using Tiveriad.Multitenancy.Core.Entities;
 
 namespace Tiveriad.Multitenancy.Api.Contracts;
 public class UserWriterModel

@@ -1,12 +1,8 @@
-using Microsoft.EntityFrameworkCore;
 using MediatR;
-using System;
-using Tiveriad.Repositories;
-using Tiveriad.Multitenancy.Core.Entities;
-using System.Threading.Tasks;
-using System.Threading;
 using Tiveriad.EnterpriseIntegrationPatterns.EventBrokers;
 using Tiveriad.Multitenancy.Core.DomainEvents;
+using Tiveriad.Multitenancy.Core.Entities;
+using Tiveriad.Repositories;
 
 namespace Tiveriad.Multitenancy.Application.Commands.OrganizationCommands;
 public class DeleteOrganizationByIdRequestHandler : IRequestHandler<DeleteOrganizationByIdRequest, bool>

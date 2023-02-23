@@ -1,6 +1,6 @@
-using Tiveriad.Multitenancy.Infrastructure;
-using Tiveriad.Multitenancy.Application;
 using Tiveriad.Multitenancy.Api;
+using Tiveriad.Multitenancy.Application;
+using Tiveriad.Multitenancy.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddMapper();

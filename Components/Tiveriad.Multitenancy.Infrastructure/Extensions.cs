@@ -1,26 +1,21 @@
-using System.Reflection;
 using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
-using Tiveriad.Commons.Extensions;
 using Tiveriad.Commons.RetryLogic;
 using Tiveriad.Connections;
 using Tiveriad.EnterpriseIntegrationPatterns.EventBrokers;
-using Tiveriad.EnterpriseIntegrationPatterns.Mediators;
 using Tiveriad.EnterpriseIntegrationPatterns.MessageBrokers;
 using Tiveriad.EnterpriseIntegrationPatterns.RabbitMq;
 using Tiveriad.Multitenancy.Core.DomainEvents;
-using Tiveriad.Multitenancy.Persistence;
 using Tiveriad.Multitenancy.Core.Entities;
 using Tiveriad.Multitenancy.Core.Services;
 using Tiveriad.Multitenancy.Infrastructure.Publishers;
 using Tiveriad.Multitenancy.Infrastructure.Services;
+using Tiveriad.Multitenancy.Persistence;
 using Tiveriad.Repositories.EntityFrameworkCore.Repositories;
 using Tiveriad.Repositories.Microsoft.DependencyInjection;
-
 
 namespace Tiveriad.Multitenancy.Infrastructure;
 public static class DependencyInjection

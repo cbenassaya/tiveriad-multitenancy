@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using Tiveriad.Multitenancy.Core.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Tiveriad.Multitenancy.Core.Entities;
 
 namespace Tiveriad.Multitenancy.Persistence.Entities;
 public class OrganizationConfiguration : IEntityTypeConfiguration<Organization>

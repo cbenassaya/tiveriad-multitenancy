@@ -1,6 +1,6 @@
 using AutoMapper;
-using Tiveriad.Multitenancy.Core.Entities;
 using Tiveriad.Multitenancy.Api.Contracts;
+using Tiveriad.Multitenancy.Core.Entities;
 
 namespace Tiveriad.Multitenancy.Api.Mappings;
 public class MembershipProfile : Profile

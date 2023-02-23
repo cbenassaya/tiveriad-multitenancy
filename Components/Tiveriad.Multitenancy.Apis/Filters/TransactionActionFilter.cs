@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
-using Tiveriad.Repositories;
 using Tiveriad.Multitenancy.Core.Services;
+using Tiveriad.Repositories;
 
 namespace Tiveriad.Multitenancy.Api.Filters;
 public class TransactionActionFilter : IAsyncActionFilter

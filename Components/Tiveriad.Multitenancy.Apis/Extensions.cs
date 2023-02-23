@@ -1,17 +1,13 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
-using Microsoft.EntityFrameworkCore;
 using RabbitMQ.Client;
 using Tiveriad.EnterpriseIntegrationPatterns.DependencyInjection;
 using Tiveriad.EnterpriseIntegrationPatterns.EventBrokers;
 using Tiveriad.EnterpriseIntegrationPatterns.RabbitMq;
 using Tiveriad.EnterpriseIntegrationPatterns.ServiceResolvers;
 using Tiveriad.Multitenancy.Api.Filters;
-using Tiveriad.Multitenancy.Api.Mappings;
 using Tiveriad.Multitenancy.Core.DomainEvents;
-using Tiveriad.Multitenancy.Infrastructure;
-using Tiveriad.Multitenancy.Persistence;
-using ServiceCollectionExtensions = Tiveriad.Repositories.Microsoft.DependencyInjection.ServiceCollectionExtensions;
 
 namespace Tiveriad.Multitenancy.Api;
 public static class Extensions

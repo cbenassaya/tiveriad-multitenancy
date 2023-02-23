@@ -1,6 +1,5 @@
-using Tiveriad.Repositories;
-using System;
 using System.ComponentModel.DataAnnotations;
+using Tiveriad.Repositories;
 
 namespace Tiveriad.Multitenancy.Core.Entities;
 public class Organization : IEntity<string>, IAuditable<string>

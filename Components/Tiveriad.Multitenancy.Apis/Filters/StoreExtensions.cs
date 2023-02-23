@@ -1,5 +1,4 @@
-﻿using System.Collections.Immutable;
-using Tiveriad.EnterpriseIntegrationPatterns.EventBrokers;
+﻿using Tiveriad.EnterpriseIntegrationPatterns.EventBrokers;
 
 namespace Tiveriad.Multitenancy.Api.Filters;
 

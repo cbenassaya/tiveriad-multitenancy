@@ -1,7 +1,6 @@
 using FluentValidation;
-using Tiveriad.Repositories;
 using Tiveriad.Multitenancy.Core.Entities;
-using System;
+using Tiveriad.Repositories;
 
 namespace Tiveriad.Multitenancy.Application.Commands.MembershipCommands;
 public class DeleteMembershipByIdPreValidator : AbstractValidator<DeleteMembershipByIdRequest>

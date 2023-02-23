@@ -1,9 +1,7 @@
-using Microsoft.AspNetCore.Mvc;
-using MediatR;
 using AutoMapper;
-using System.Threading.Tasks;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using Tiveriad.Multitenancy.Api.Contracts;
-using System.Threading;
 using Tiveriad.Multitenancy.Core.Entities;
 
 namespace Tiveriad.Multitenancy.Api.EndPoints.UserEndPoints;
