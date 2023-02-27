@@ -1,12 +1,13 @@
-using FluentValidation;
+﻿using FluentValidation;
 using Tiveriad.Multitenancy.Core.Entities;
 using Tiveriad.Repositories;
 
 namespace Tiveriad.Multitenancy.Applications.Commands.OrganizationCommands;
-public class SaveOrUpdateOrganizationPreValidator : AbstractValidator<SaveOrUpdateOrganizationRequest>
+
+public class UpdateOrganizationPreValidator : AbstractValidator<UpdateOrganizationRequest>
 {
     private IRepository<Organization, string> _organizationRepository;
-    public SaveOrUpdateOrganizationPreValidator(IRepository<Organization, string> organizationRepository)
+    public UpdateOrganizationPreValidator(IRepository<Organization, string> organizationRepository)
     {
         _organizationRepository = organizationRepository;
     }

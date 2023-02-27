@@ -5,17 +5,17 @@ using Tiveriad.Multitenancy.Core.Entities;
 using Tiveriad.Repositories;
 
 namespace Tiveriad.Multitenancy.Applications.Commands.UserCommands;
-public class SaveOrUpdateUserRequestHandler : IRequestHandler<SaveOrUpdateUserRequest, User>
+public class SaveUserRequestHandler : IRequestHandler<SaveUserRequest, User>
 {
     private readonly IRepository<User, string> _userRepository;
     private readonly IDomainEventStore _store;
-    public SaveOrUpdateUserRequestHandler(IRepository<User, string> userRepository, IDomainEventStore store)
+    public SaveUserRequestHandler(IRepository<User, string> userRepository, IDomainEventStore store)
     {
         _userRepository = userRepository;
         _store = store;
     }
 
-    public Task<User> Handle(SaveOrUpdateUserRequest request, CancellationToken cancellationToken)
+    public Task<User> Handle(SaveUserRequest request, CancellationToken cancellationToken)
     {
         var query = _userRepository.Queryable.Where(x => x.Id == request.User.Id);
         return Task.Run(async () =>

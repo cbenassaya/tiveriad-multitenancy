@@ -3,10 +3,10 @@ using Tiveriad.Multitenancy.Core.Entities;
 using Tiveriad.Repositories;
 
 namespace Tiveriad.Multitenancy.Applications.Commands.UserCommands;
-public class SaveOrUpdateUserPreValidator : AbstractValidator<SaveOrUpdateUserRequest>
+public class SaveUserPreValidator : AbstractValidator<SaveUserRequest>
 {
     private IRepository<User, string> _userRepository;
-    public SaveOrUpdateUserPreValidator(IRepository<User, string> userRepository)
+    public SaveUserPreValidator(IRepository<User, string> userRepository)
     {
         _userRepository = userRepository;
     }

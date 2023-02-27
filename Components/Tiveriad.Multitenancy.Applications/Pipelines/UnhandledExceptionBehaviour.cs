@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
+using Tiveriad.Multitenancy.Core.Exceptions;
 
 namespace Tiveriad.Multitenancy.Applications.Pipelines;
 
@@ -25,7 +26,7 @@ public class UnhandledExceptionBehaviour<TRequest, TResponse> : IPipelineBehavio
 
             _logger.LogError("Request: Unhandled Exception for Request {Name} {@Request}", requestName, request, ex);
 
-            throw;
+            throw new MultiTenancyException(MultiTenancyError.INTERNAL_ERROR);
         }
     }
 }

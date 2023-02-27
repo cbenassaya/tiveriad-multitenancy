@@ -7,11 +7,11 @@ using Tiveriad.Multitenancy.Applications.Commands.UserCommands;
 using Tiveriad.Multitenancy.Core.Entities;
 
 namespace Tiveriad.Multitenancy.Apis.EndPoints.UserEndPoints;
-public class SaveOrUpdateEndPoint : ControllerBase
+public class PostEndPoint : ControllerBase
 {
     private readonly IMediator _mediator;
     private readonly IMapper _mapper;
-    public SaveOrUpdateEndPoint(IMapper mapper, IMediator mediator)
+    public PostEndPoint(IMapper mapper, IMediator mediator)
     {
         _mediator = mediator;
         _mapper = mapper;
@@ -26,7 +26,7 @@ public class SaveOrUpdateEndPoint : ControllerBase
     {
         //<-- START CUSTOM CODE-->
         var entity = _mapper.Map<UserWriterModel, User>(model);
-        var result = await _mediator.Send(new SaveOrUpdateUserRequest(entity), cancellationToken);
+        var result = await _mediator.Send(new SaveUserRequest(entity), cancellationToken);
         var data = _mapper.Map<User, UserReaderModel>(result);
         //<-- END CUSTOM CODE-->
         return Ok(data);

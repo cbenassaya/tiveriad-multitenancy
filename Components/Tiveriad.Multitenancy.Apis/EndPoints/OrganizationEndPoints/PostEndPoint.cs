@@ -7,11 +7,11 @@ using Tiveriad.Multitenancy.Applications.Commands.OrganizationCommands;
 using Tiveriad.Multitenancy.Core.Entities;
 
 namespace Tiveriad.Multitenancy.Apis.EndPoints.OrganizationEndPoints;
-public class SaveOrUpdateEndPoint : ControllerBase
+public class PostEndPoint : ControllerBase
 {
     private readonly IMediator _mediator;
     private readonly IMapper _mapper;
-    public SaveOrUpdateEndPoint(IMapper mapper, IMediator mediator)
+    public PostEndPoint(IMapper mapper, IMediator mediator)
     {
         _mediator = mediator;
         _mapper = mapper;
@@ -26,7 +26,7 @@ public class SaveOrUpdateEndPoint : ControllerBase
     {
         //<-- START CUSTOM CODE-->
         var entity = _mapper.Map<OrganizationWriterModel, Organization>(model);
-        var result = await _mediator.Send(new SaveOrUpdateOrganizationRequest(entity), cancellationToken);
+        var result = await _mediator.Send(new SaveOrganizationRequest(entity), cancellationToken);
         var data = _mapper.Map<Organization, OrganizationReaderModel>(result);
         //<-- END CUSTOM CODE-->
         return Ok(data);
