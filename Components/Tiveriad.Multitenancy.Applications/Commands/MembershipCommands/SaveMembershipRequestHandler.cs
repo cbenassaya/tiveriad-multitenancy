@@ -8,14 +8,10 @@ using Tiveriad.Repositories;
 namespace Tiveriad.Multitenancy.Applications.Commands.MembershipCommands;
 public class SaveMembershipRequestHandler : IRequestHandler<SaveMembershipRequest, Membership>
 {
-    private readonly IRepository<Organization, string> _organizationRepository;
     private readonly IRepository<Membership, string> _repository;
-    private readonly IRepository<User, string> _userRepository;
     private readonly IDomainEventStore _store;
-    public SaveMembershipRequestHandler(IRepository<Organization, string> organizationRepository, IRepository<User, string> userRepository, IRepository<Membership, string> repository, IDomainEventStore store)
+    public SaveMembershipRequestHandler(IRepository<Membership, string> repository, IDomainEventStore store)
     {
-        _organizationRepository = organizationRepository;
-        _userRepository = userRepository;
         _repository = repository;
         _store = store;
     }

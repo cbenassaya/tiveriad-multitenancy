@@ -35,21 +35,6 @@ public class TransactionActionFilter : IAsyncActionFilter
                         break;
                 }
             
-            
-            
-            foreach (var entry in _context.ChangeTracker.Entries<IAuditable<string>>())
-                switch (entry.State)
-                {
-                    case EntityState.Added:
-                        entry.Entity.CreatedBy = _userManagerService.GetUserId();
-                        entry.Entity.Created = DateTime.Now;
-                        break;
-                    case EntityState.Modified:
-                        entry.Entity.LastModifiedBy = _userManagerService.GetUserId();
-                        entry.Entity.LastModified = DateTime.Now;
-                        break;
-                }
-
             try
             {
                 await _context.SaveChangesAsync();

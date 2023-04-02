@@ -6,13 +6,16 @@ public class UserWriterModel
     public string? Id { get; set; }
 
     [Required]
-    public string? Email { get; set; }
+    [EmailAddress]
+    public string Email { get; set; }
 
     [Required]
-    public string? Firstname { get; set; }
+    [MaxLength(50)]
+    public string Firstname { get; set; }
 
     [Required]
-    public string? Lastname { get; set; }
+    [MaxLength(50)]
+    public string Lastname { get; set; }
 
     public string? Description { get; set; }
 }
