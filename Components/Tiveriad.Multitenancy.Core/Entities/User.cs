@@ -15,11 +15,15 @@ public class User : IEntity<string>, IAuditable<string>
 
     [MaxLength(50)]
     public string Lastname { get; set; }
+    
+    [MaxLength(50)]
+    public string Username { get; set; }
+    
+    [MaxLength(50)]
+    public string Locale { get; set; }
 
     [MaxLength(500)]
     public string? Description { get; set; }
-
-    public UserState? State { get; set; }
 
     public string CreatedBy { get; set; }
 

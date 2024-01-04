@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.ComponentModel.DataAnnotations;
+using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Tiveriad.Multitenancy.Apis.Contracts;
@@ -18,16 +19,17 @@ public class PutEndPoint : ControllerBase
         _mapper = mapper;
     }
 
-    [HttpPut("/api/users")]
+    [HttpPut("/api/organizations/{organizationId}/users/{userId}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [ValidateModel]
-    public async Task<ActionResult<UserReaderModel>> HandleAsync([FromBody] UserWriterModel model, CancellationToken cancellationToken)
+    public async Task<ActionResult<UserReaderModel>> HandleAsync([Required][FromRoute] string organizationId,[Required] [FromRoute] string userId,[FromBody] UserStateUpdaterModel model, CancellationToken cancellationToken)
     {
         //<-- START CUSTOM CODE-->
-        var entity = _mapper.Map<UserWriterModel, User>(model);
-        var result = await _mediator.Send(new UpdateUserRequest(entity), cancellationToken);
+        if (!Enum.TryParse<MembershipState>(model.State, true, out var state))
+            return BadRequest("State is not valid");
+        var result = await _mediator.Send(new UpdateMembershipStateRequest(organizationId,userId, state), cancellationToken);
         var data = _mapper.Map<User, UserReaderModel>(result);
         //<-- END CUSTOM CODE-->
         return Ok(data);

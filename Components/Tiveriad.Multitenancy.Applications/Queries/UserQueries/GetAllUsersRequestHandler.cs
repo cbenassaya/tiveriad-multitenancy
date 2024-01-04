@@ -1,21 +1,60 @@
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Tiveriad.Multitenancy.Core.Entities;
 using Tiveriad.Repositories;
 
 namespace Tiveriad.Multitenancy.Applications.Queries.UserQueries;
 public class GetAllUsersRequestHandler : IRequestHandler<GetAllUsersRequest, IEnumerable<User>>
 {
-    private readonly IRepository<User, string> _userRepository;
-    public GetAllUsersRequestHandler(IRepository<User, string> userRepository)
+    private readonly IRepository<Membership, string> _membershipRepository;
+    public GetAllUsersRequestHandler(IRepository<Membership, string> membershipRepository)
     {
-        _userRepository = userRepository;
+        _membershipRepository = membershipRepository;
     }
 
     public Task<IEnumerable<User>> Handle(GetAllUsersRequest request, CancellationToken cancellationToken)
     {
         //<-- START CUSTOM CODE-->
-        var query = _userRepository.Queryable;
-        return Task.Run(() => query.ToList().AsEnumerable(), cancellationToken);
+        var query = _membershipRepository.Queryable.Include(x=>x.User).Include(x=>x.Organization).AsQueryable();
+        query = query.Where(x => x.Organization.Id == request.OrganizationId);
+        if (!string.IsNullOrWhiteSpace(request.Id))
+            query = query.Where(x => x.User.Id == request.Id);
+        if (!string.IsNullOrWhiteSpace(request.Email))
+            query = query.Where(x => x.User.Email == request.Email);
+        if (!string.IsNullOrWhiteSpace(request.Username))
+            query = query.Where(x => x.User.Username == request.Username);
+        if (!string.IsNullOrWhiteSpace(request.Firstname))
+            query = query.Where(x => x.User.Firstname == request.Firstname);
+        if (!string.IsNullOrWhiteSpace(request.Lastname))
+            query = query.Where(x => x.User.Lastname == request.Lastname);
+        if (request.States != null && request.States.Any())
+        {
+            var states = Enum.GetValues<MembershipState>().Where(x => request.States.Contains(x.ToString())).ToList();
+            query = query.Where(x => states.Contains(x.State));
+        }
+        if (!string.IsNullOrWhiteSpace(request.Q))
+        {
+            query = query.Where(x => x.User.Email.Contains(request.Q) || x.User.Username.Contains(request.Q) || x.User.Firstname.Contains(request.Q) || x.User.Lastname.Contains(request.Q));
+        }
+        if (request.Orders != null && request.Orders.Any())
+        {
+            foreach (var order in request.Orders)
+            {
+                if (order.StartsWith("-"))
+                {
+                    query = query.OrderByDescending(x => EF.Property<object>(x, order.Substring(1)));
+                }
+                else
+                {
+                    query = query.OrderBy(x => EF.Property<object>(x, order));
+                }
+            }
+        }
+        if (request.Page.HasValue && request.Limit.HasValue)
+        {
+            query = query.Skip(request.Page.Value * request.Limit.Value).Take(request.Limit.Value);
+        }
+        return Task.Run(() => query.ToList().Select(x=>x.User).AsEnumerable(), cancellationToken);
     //<-- END CUSTOM CODE-->
     }
 }

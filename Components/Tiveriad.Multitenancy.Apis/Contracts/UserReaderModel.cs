@@ -13,8 +13,6 @@ public class UserReaderModel
 
     public string? Description { get; set; }
 
-    public UserState? State { get; set; }
-
     public string? CreatedBy { get; set; }
 
     public DateTime? Created { get; set; }

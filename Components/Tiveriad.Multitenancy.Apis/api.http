@@ -1,0 +1,46 @@
+
+
+### Add a new organizations
+POST http://{{hostname}}:{{port}}/api/organizations
+Content-Type: application/json
+{
+  "name": "My Organization",
+  "description": "Organization description",
+  "owner":
+  {
+    "email": "charles.benassaya@gmail.com",
+    "username": "charlesbenassaya",
+    "locale": "fr-FR",
+    "firstname": "Charles",
+    "lastname": "Benassaya",
+    "description": "Owner description"
+  }
+}
+
+### Get all organizations
+GET http://{{hostname}}:{{port}}/api/organizations
+Accept: application/json
+
+### Invite a new user
+http://{{hostname}}:{{port}}/api/organizations/6596d8ffcc31c3fddffc0f64/users
+Content-Type: application/json
+{
+    "email": "tom.hanks@email.com",
+    "username": "tomhanks",
+    "firstname": "Tom",
+    "lastname": "Hanks",
+    "locale": "en-US",
+    "description": "Owner description" 
+}
+
+### Get all users
+GET http://{{hostname}}:{{port}}/api/organizations/1/users
+
+### Modify user state
+PUT http://{{hostname}}:{{port}}/api/organizations/1/users/1
+Content-Type: application/json
+{
+    "state": "validated"
+}
+
+

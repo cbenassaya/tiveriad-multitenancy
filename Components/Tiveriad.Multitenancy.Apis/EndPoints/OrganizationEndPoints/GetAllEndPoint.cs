@@ -21,10 +21,14 @@ public class GetAllEndPoint : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<OrganizationReaderModel>> HandleAsync(CancellationToken cancellationToken)
+    public async Task<ActionResult<OrganizationReaderModel>> HandleAsync(
+        [FromQuery] string? id, [FromQuery] string? name,
+        [FromQuery] int? page, [FromQuery] int? limit,
+        [FromQuery] string? q, [FromQuery] string[]? orders,
+        CancellationToken cancellationToken)
     {
         //<-- START CUSTOM CODE-->
-        var result = await _mediator.Send(new GetAllOrganizationsRequest(), cancellationToken);
+        var result = await _mediator.Send(new GetAllOrganizationsRequest(id,name,page,limit,q,orders), cancellationToken);
         if (result == null || !result.Any())
             return NoContent();
         var data = _mapper.Map<IEnumerable<Organization>, IEnumerable<OrganizationReaderModel>>(result);

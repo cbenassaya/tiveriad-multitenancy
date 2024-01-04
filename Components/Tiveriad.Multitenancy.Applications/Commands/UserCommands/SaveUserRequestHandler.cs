@@ -8,41 +8,48 @@ namespace Tiveriad.Multitenancy.Applications.Commands.UserCommands;
 public class SaveUserRequestHandler : IRequestHandler<SaveUserRequest, User>
 {
     private readonly IRepository<User, string> _userRepository;
+    private readonly IRepository<Membership,string> _membershipRepository;
+    private readonly IRepository<Organization,string> _organizationRepository;
+    
     private readonly IDomainEventStore _store;
-    public SaveUserRequestHandler(IRepository<User, string> userRepository, IDomainEventStore store)
+    public SaveUserRequestHandler(IRepository<User, string> userRepository, IDomainEventStore store, IRepository<Membership, string> membershipRepository, IRepository<Organization, string> organizationRepository)
     {
         _userRepository = userRepository;
         _store = store;
+        _membershipRepository = membershipRepository;
+        _organizationRepository = organizationRepository;
     }
 
     public Task<User> Handle(SaveUserRequest request, CancellationToken cancellationToken)
     {
-        var query = _userRepository.Queryable.Where(x => x.Id == request.User.Id);
         return Task.Run(async () =>
         {
+            var organization = await _organizationRepository.GetByIdAsync(request.OrganizationId,cancellationToken);
             //<-- START CUSTOM CODE-->
-            var result = query.ToList().FirstOrDefault();
-            if (result == null)
+            var user =  await _userRepository.GetByIdAsync(request.User.Id, cancellationToken);
+            if (user == null)
             {
-                await _userRepository.AddOneAsync(request.User, cancellationToken);
-                _store.Add<UserDomainEvent,string>( new UserDomainEvent() {User = request.User, EventType = "INSERT"});
-                return request.User;
+                user = request.User;
+                await _userRepository.AddOneAsync(user, cancellationToken);
             }
             else
             {
-                result.Email = request.User.Email;
-                result.Firstname = request.User.Firstname;
-                result.Lastname = request.User.Lastname;
-                result.Description = request.User.Description;
-                result.State = request.User.State;
-                result.CreatedBy = request.User.CreatedBy;
-                result.Created = request.User.Created;
-                result.LastModifiedBy = request.User.LastModifiedBy;
-                result.LastModified = request.User.LastModified;
-                _store.Add<UserDomainEvent,string>( new UserDomainEvent() {User = result, EventType = "UPDATE"});
-                return result;
+                user.Email = request.User.Email;
+                user.Firstname = request.User.Firstname;
+                user.Lastname = request.User.Lastname;
+                user.Description = request.User.Description;
+                user.Username = request.User.Username;
             }
-        //<-- END CUSTOM CODE-->
+            var membership = new Membership()
+            {
+                Organization = organization,
+                User = user,
+                State = MembershipState.Pending
+            };
+            await _membershipRepository.AddOneAsync(membership, cancellationToken);
+            _store.Add<MembershipDomainEvent, string>(new MembershipDomainEvent() { Membership = membership, EventType = "SAVE" });
+            return user;
+            //<-- END CUSTOM CODE-->
         }, cancellationToken);
     }
 }

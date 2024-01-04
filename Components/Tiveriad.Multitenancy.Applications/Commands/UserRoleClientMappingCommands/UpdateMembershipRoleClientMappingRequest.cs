@@ -1,0 +1,6 @@
+﻿using MediatR;
+using Tiveriad.Multitenancy.Core.Entities;
+
+namespace Tiveriad.Multitenancy.Applications.Commands.UserRoleClientMappingCommands;
+
+public record UpdateMembershipRoleClientMappingRequest(MembershipRoleClientMapping MembershipRoleClientMapping) : IRequest<MembershipRoleClientMapping>,ICommandRequest;

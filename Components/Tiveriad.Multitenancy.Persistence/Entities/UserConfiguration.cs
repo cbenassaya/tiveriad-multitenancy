@@ -13,7 +13,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         // <-- ManyToOne -->
         // <-- OneToMany -->
         // <-- Enum -->
-        builder.Property(e => e.State).HasConversion(v => v.ToString(), v => (UserState)Enum.Parse(typeof(UserState), v));
-    // <-- Object -->
+        // <-- Object -->
     }
 }

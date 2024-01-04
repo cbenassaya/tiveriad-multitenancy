@@ -25,8 +25,9 @@ public class PostEndPoint : ControllerBase
     public async Task<ActionResult<OrganizationReaderModel>> HandleAsync([FromBody] OrganizationWriterModel model, CancellationToken cancellationToken)
     {
         //<-- START CUSTOM CODE-->
-        var entity = _mapper.Map<OrganizationWriterModel, Organization>(model);
-        var result = await _mediator.Send(new SaveOrganizationRequest(entity), cancellationToken);
+        var organization = _mapper.Map<OrganizationWriterModel, Organization>(model);
+        var owner = _mapper.Map<UserWriterModel, User>(model.Owner);
+        var result = await _mediator.Send(new SaveOrganizationRequest(organization, owner), cancellationToken);
         var data = _mapper.Map<Organization, OrganizationReaderModel>(result);
         //<-- END CUSTOM CODE-->
         return Ok(data);

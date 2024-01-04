@@ -16,15 +16,35 @@ public class GetAllEndPoint : ControllerBase
         _mapper = mapper;
     }
 
-    [HttpGet("/api/users")]
+    [HttpGet("/api/organizations/{organizationId}/users")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<ActionResult<UserReaderModel>> HandleAsync(CancellationToken cancellationToken)
+    public async Task<ActionResult<UserReaderModel>> HandleAsync(
+        [FromRoute] string organizationId,
+        [FromQuery] string? id,
+        [FromQuery] string? email, [FromQuery]  string? username,
+        [FromQuery] string? firstname,  [FromQuery] string? lastname, 
+        [FromQuery] string[]? states,
+        [FromQuery] int? page, [FromQuery] int? limit,
+        [FromQuery] string? q, [FromQuery] string[]? orders,
+        CancellationToken cancellationToken)
     {
         //<-- START CUSTOM CODE-->
-        var result = await _mediator.Send(new GetAllUsersRequest(), cancellationToken);
+        var result = await _mediator.Send(new GetAllUsersRequest(
+            organizationId,
+            id,
+            email,
+            username,
+            firstname,
+            lastname,
+            states,
+            page,
+            limit,
+            q,
+            orders
+            ), cancellationToken);
         if (result == null || !result.Any())
             return NoContent();
         var data = _mapper.Map<IEnumerable<User>, IEnumerable<UserReaderModel>>(result);
