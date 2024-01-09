@@ -10,3 +10,4 @@ public class MembershipDomainEvent:IDomainEvent<string>
     public Membership Membership { get; set; }
     public string EventType  { get; set; }
 }
+

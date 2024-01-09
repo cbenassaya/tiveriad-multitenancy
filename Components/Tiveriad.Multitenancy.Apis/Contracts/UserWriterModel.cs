@@ -11,6 +11,10 @@ public class UserWriterModel
     public string Username { get; set; } = string.Empty;
     
     [Required]
+    [MaxLength(12)]
+    public string Password { get; set; } = string.Empty;
+    
+    [Required]
     [MaxLength(50)]
     public string Locale { get; set; } = string.Empty;
     

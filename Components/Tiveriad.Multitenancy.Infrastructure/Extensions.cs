@@ -8,6 +8,9 @@ using Tiveriad.Connections;
 using Tiveriad.EnterpriseIntegrationPatterns.EventBrokers;
 using Tiveriad.EnterpriseIntegrationPatterns.MessageBrokers;
 using Tiveriad.EnterpriseIntegrationPatterns.RabbitMq;
+using Tiveriad.Keycloak;
+using Tiveriad.Keycloak.Apis;
+using Tiveriad.Keycloak.Services;
 using Tiveriad.Multitenancy.Core.DomainEvents;
 using Tiveriad.Multitenancy.Core.Entities;
 using Tiveriad.Multitenancy.Core.Services;
@@ -46,6 +49,26 @@ public static class DependencyInjection
             sp.GetRequiredService<IRabbitMqConnectionConfiguration>(),
             typeof(MembershipDomainEvent).FullName,
             sp.GetRequiredService<ILogger<MembershipDomainEventPublisher>>()));
+        
+        
+        var factory = KeycloakSessionFactory.Configurator.Get(x =>
+        {
+            x.SetCredential("admin_user", "HlAe!26!BtLt").SetUrlBase("https://secure.kodin.info");
+        }).Build();
+
+        services.AddSingleton(factory);
+        
+        services.AddScoped( x =>
+        {
+            var httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri("https://secure.kodin.info/auth/admin/realms/");
+            return httpClient;
+        });
+        
+        services.AddScoped<IRoleApi, RoleApi>();
+        services.AddScoped<IUserApi, UserApi>();
+        services.AddScoped<IRoleMapperApi, RoleMapperApi>();
+        
         return services;
     }
 }

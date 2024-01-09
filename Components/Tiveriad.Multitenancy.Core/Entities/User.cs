@@ -1,4 +1,6 @@
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Tiveriad.Repositories;
 
 namespace Tiveriad.Multitenancy.Core.Entities;
@@ -18,6 +20,11 @@ public class User : IEntity<string>, IAuditable<string>
     
     [MaxLength(50)]
     public string Username { get; set; }
+    
+    [MaxLength(12)]
+    [Required]
+    [NotMapped]
+    public string Password { get; set; }
     
     [MaxLength(50)]
     public string Locale { get; set; }

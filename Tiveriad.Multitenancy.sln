@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiveriad.Multitenancy.Infra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiveriad.Multitenancy.Persistence", "Components\Tiveriad.Multitenancy.Persistence\Tiveriad.Multitenancy.Persistence.csproj", "{314E0ABB-8593-4B0C-9797-2B4C2CDC9FFE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiveriad.Multitenancy.Workers", "Components\Tiveriad.Multitenancy.Workers\Tiveriad.Multitenancy.Workers.csproj", "{274CF3D4-B587-4B40-A76F-45C07D1CA39D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{314E0ABB-8593-4B0C-9797-2B4C2CDC9FFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{314E0ABB-8593-4B0C-9797-2B4C2CDC9FFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{314E0ABB-8593-4B0C-9797-2B4C2CDC9FFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{274CF3D4-B587-4B40-A76F-45C07D1CA39D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{274CF3D4-B587-4B40-A76F-45C07D1CA39D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{274CF3D4-B587-4B40-A76F-45C07D1CA39D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{274CF3D4-B587-4B40-A76F-45C07D1CA39D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BEC48CE5-56DE-41B3-9F04-DE683ADFAA8B} = {246CAC61-944C-4115-9C05-7B6B466FEF5E}
@@ -51,5 +57,6 @@ Global
 		{15411AE7-8264-45BD-861B-72A85BB7C2DD} = {246CAC61-944C-4115-9C05-7B6B466FEF5E}
 		{C8673336-FFAF-4FFA-A5D2-C3501C85A307} = {246CAC61-944C-4115-9C05-7B6B466FEF5E}
 		{314E0ABB-8593-4B0C-9797-2B4C2CDC9FFE} = {246CAC61-944C-4115-9C05-7B6B466FEF5E}
+		{274CF3D4-B587-4B40-A76F-45C07D1CA39D} = {246CAC61-944C-4115-9C05-7B6B466FEF5E}
 	EndGlobalSection
 EndGlobal
