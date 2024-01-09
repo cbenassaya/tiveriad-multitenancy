@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using Tiveriad.Repositories;
 
 namespace Tiveriad.Multitenancy.Core.Entities;
@@ -11,16 +12,21 @@ public class Organization : IEntity<string>, IAuditable<string>
     [MaxLength(50)] public string Name { get; set; } = string.Empty;
 
     [MaxLength(500)]
+    [JsonIgnore]
     public string? Description { get; set; }= string.Empty;
 
     public OrganizationState? State { get; set; } = OrganizationState.Pending;
 
+    [JsonIgnore]
     public string CreatedBy { get; set; } = string.Empty;
 
+    [JsonIgnore]
     public DateTime Created { get; set; } = DateTime.Now;
 
+    [JsonIgnore]
     public string? LastModifiedBy { get; set; } = string.Empty;
 
+    [JsonIgnore]
     public DateTime? LastModified { get; set; }
     
     protected bool Equals(Organization other)

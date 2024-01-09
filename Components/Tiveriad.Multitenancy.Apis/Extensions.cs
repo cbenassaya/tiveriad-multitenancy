@@ -7,6 +7,7 @@ using Tiveriad.EnterpriseIntegrationPatterns.EventBrokers;
 using Tiveriad.EnterpriseIntegrationPatterns.RabbitMq;
 using Tiveriad.Multitenancy.Apis.Filters;
 using Tiveriad.Multitenancy.Core.DomainEvents;
+using Tiveriad.Multitenancy.Infrastructure.Services;
 using Tiveriad.ServiceResolvers;
 
 namespace Tiveriad.Multitenancy.Apis;
@@ -36,15 +37,20 @@ public static class Extensions
     }
     public static void AddEip(this IServiceCollection services)
     {
+        services.AddSingleton<RabbitMqConfigurationService>();
+        var configuration = services
+            .BuildServiceProvider()
+            .GetRequiredService<RabbitMqConfigurationService>();
+        
         services.ConfigureConnectionFactory<RabbitMqConnectionFactoryBuilder, IConnection, RabbitMqConnectionConfigurator,
             IRabbitMqConnectionConfiguration>
         ( configurator =>
             {
                 configurator
-                    .SetHost("163.172.255.199")
-                    .SetUsername("kodin_mq_user")
-                    .SetPassword("!dlk@N123")
-                    .SetBrokerName("kodin.exange");
+                    .SetHost(configuration.Hostname)
+                    .SetUsername(configuration.Username)
+                    .SetPassword(configuration.Password)
+                    .SetBrokerName(configuration.Exchange);
             }
         );
         services.AddScoped<IServiceResolver, DependencyInjectionServiceResolver>();

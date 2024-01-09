@@ -25,9 +25,19 @@ public static class Extensions
 
     public static void AddKeycloak(this IServiceCollection services)
     {
+        services.AddSingleton<KeycloakConfigurationService>();
+        var configuration = services
+            .BuildServiceProvider()
+            .GetRequiredService<KeycloakConfigurationService>();
+        UriBuilder uriBuilder = new UriBuilder
+        {
+            Scheme = configuration.Scheme,
+            Host = configuration.Hostname,
+        };
+        
         var factory = KeycloakSessionFactory.Configurator.Get(x =>
         {
-            x.SetCredential("admin_user", "HlAe!26!BtLt").SetUrlBase("https://secure.kodin.info");
+            x.SetCredential(configuration.Username, configuration.Password).SetUrlBase(uriBuilder.Uri.ToString());
         }).Build();
 
         services.AddSingleton(factory);
@@ -36,7 +46,14 @@ public static class Extensions
         services.AddSingleton( x =>
         {
             var httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("https://secure.kodin.info/auth/admin/realms/");
+          
+            UriBuilder uriBuilder = new UriBuilder
+            {
+                Scheme = configuration.Scheme,
+                Host = configuration.Hostname,
+                Path = configuration.Path
+            };
+            httpClient.BaseAddress = uriBuilder.Uri;
             return httpClient;
         });
         
@@ -48,15 +65,20 @@ public static class Extensions
 
     public static void AddEip(this IServiceCollection services)
     {
+        services.AddSingleton<RabbitMqConfigurationService>();
+        var configuration = services
+            .BuildServiceProvider()
+            .GetRequiredService<RabbitMqConfigurationService>();
+        
         services.ConfigureConnectionFactory<RabbitMqConnectionFactoryBuilder, IConnection, RabbitMqConnectionConfigurator,
             IRabbitMqConnectionConfiguration>
         ( configurator =>
             {
                 configurator
-                    .SetHost("163.172.255.199")
-                    .SetUsername("kodin_mq_user")
-                    .SetPassword("!dlk@N123")
-                    .SetBrokerName("kodin.exange");
+                    .SetHost(configuration.Hostname)
+                    .SetUsername(configuration.Username)
+                    .SetPassword(configuration.Password)
+                    .SetBrokerName(configuration.Exchange);
             }
         );
         services.AddScoped<IServiceResolver, DependencyInjectionServiceResolver>();

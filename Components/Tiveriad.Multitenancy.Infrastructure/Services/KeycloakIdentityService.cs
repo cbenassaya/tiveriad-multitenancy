@@ -12,12 +12,14 @@ public class KeycloakIdentityService : IIdentityService
     private readonly ILogger<KeycloakIdentityService> _logger;
     private readonly IUserApi _userApi;
     private readonly JsonSerializerOptions _jsonSerializerOptions;
+    private readonly KeycloakConfigurationService _keycloakConfigurationService;
     
 
-    public KeycloakIdentityService(ILogger<KeycloakIdentityService> logger, IUserApi userApi)
+    public KeycloakIdentityService(ILogger<KeycloakIdentityService> logger, IUserApi userApi, KeycloakConfigurationService keycloakConfigurationService)
     {
         _logger = logger;
         _userApi = userApi;
+        _keycloakConfigurationService = keycloakConfigurationService;
         _jsonSerializerOptions = new JsonSerializerOptions
         {
             PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
@@ -77,6 +79,6 @@ public class KeycloakIdentityService : IIdentityService
             };
         }
 
-        await _userApi.PostUser("kodin-dev-realm", userReprensentation);
+        await _userApi.PostUser(_keycloakConfigurationService.Realm, userReprensentation);
     }
 }
