@@ -85,7 +85,7 @@ public static class Extensions
 
     public static void UseEndpoints(this IApplicationBuilder application)
     {
-        application.UseEndpoints(builder => builder.MapControllers());
+        application.UseEndpoints(builder => builder.MapControllers().WithOpenApi());
     }
 
     public static void AddUserResolverService(this IServiceCollection services)
